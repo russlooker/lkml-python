@@ -309,13 +309,16 @@ class Parser:
         if key is None:
             return key
 
-        literal: Optional[str] = ""
-        if self.check(tokens.RefinementToken):
-            self.advance()
-            literal = "+"
+        #Commented out to revert to old behavior with refinement treated as a seperate object
+        # literal: Optional[str] = ""
+        # if self.check(tokens.RefinementToken):
+        #     self.advance()
+        #     literal = "+"
 
         if self.check(tokens.LiteralToken):
-            literal = "{}{}".format(literal, self.consume_token_value())
+            literal = self.consume_token_value()
+            #Commented out and switched back to line above to revert to old behavior with refinement treated as a seperate object
+            # literal = "{}{}".format(literal, self.consume_token_value())
         else:
             literal = None
 
